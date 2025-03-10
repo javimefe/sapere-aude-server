@@ -25,8 +25,8 @@ app.post('/admin-login', (req, res) => {
 
 // Opciones con los archivos del certificado SSL y la clave privada
 const options = {
-    key: fs.readFileSync('C:/Users/javim/Downloads/Project/server/server.key'),
-    cert: fs.readFileSync('C:/Users/javim/Downloads/Project/server/server.cert')
+    key: fs.readFileSync('C:\Users\javim\Downloads\Project\server\server.key'),
+    cert: fs.readFileSync('C:\Users\javim\Downloads\Project\server\server.cert')
 };
 
 // Crear el servidor HTTPS en el puerto 3000
