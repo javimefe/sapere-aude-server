@@ -1,6 +1,4 @@
 const express = require('express');
-const https = require('https');
-const fs = require('fs');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
@@ -10,11 +8,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Rutas
+// Ruta principal
 app.get('/', (req, res) => {
-  res.send('Servidor seguro funcionando');
+  res.send('Servidor funcionando');
 });
 
+// Endpoint para el login de admin
 app.post('/admin-login', (req, res) => {
   const { password } = req.body;
   if (password === process.env.ADMIN_PASSWORD) {
@@ -24,14 +23,7 @@ app.post('/admin-login', (req, res) => {
   }
 });
 
-// Lee key y cert desde variables de entorno (Railway > Variables)
-const key = process.env.SERVER_KEY.replace(/\\n/g, '\n');
-const cert = process.env.SERVER_CERT.replace(/\\n/g, '\n');
-
-const options = { key, cert };
 const port = process.env.PORT || 3000;
-
-// Servidor HTTPS
-https.createServer(options, app).listen(port, '0.0.0.0', () => {
-  console.log(`Servidor seguro corriendo en https://0.0.0.0:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Servidor corriendo en http://0.0.0.0:${port}`);
 });
